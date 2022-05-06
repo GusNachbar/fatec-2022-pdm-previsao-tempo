@@ -12,6 +12,7 @@ import { LANGUAGE } from "@env";
 
 export default function App() {
   const [cidade, setCidade] = useState("");
+  const [previsoes, setPrevisoes] = useState({});
 
   const capturarCidade = (cidadeCapturada) => {
     setCidade(cidadeCapturada);
@@ -27,7 +28,10 @@ export default function App() {
         />
         <Button title="Search" />
       </View>
-      <FlatList></FlatList>
+      <FlatList
+        data={previsoes}
+        renderItem={(p) => <Text>{JSON.stringify(p)}</Text>}
+      ></FlatList>
     </View>
   );
 }
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
   cidadeTextInput: {
     padding: 12,
     borderBottomColor: "#FF9800",
-    borderLeftWidth: 2,
+    borderBottomWidth: 2,
     marginBottom: 4,
     textAlign: "center",
   },
