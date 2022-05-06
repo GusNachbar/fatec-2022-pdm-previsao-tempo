@@ -1,21 +1,43 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { LANGUAGE } from "@env";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{LANGUAGE}</Text>
-      <StatusBar style="auto" />
+      <View styles={cidadeView}>
+        <TextInput
+          style={cidadeTextInput}
+          placeholder="Digite o nome da cidade"
+        >
+          <Button title="Search"></Button>
+        </TextInput>
+      </View>
+      <FlatList></FlatList>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 40,
+  },
+  cidadeView: {
+    padding: 12,
+    marginBottom: 8,
+  },
+  cidadeTextInput: {
+    padding: 12,
+    borderBottomColor: "#FF9800",
+    borderLeftWidth: 2,
+    marginBottom: 4,
+    textAlign: "center",
   },
 });
