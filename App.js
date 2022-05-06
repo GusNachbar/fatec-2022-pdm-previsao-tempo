@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { useState, UseState } from "react";
 import {
   Button,
   FlatList,
@@ -10,15 +11,21 @@ import {
 import { LANGUAGE } from "@env";
 
 export default function App() {
+  const [cidade, setCidade] = useState("");
+
+  const capturarCidade = (cidadeCapturada) => {
+    setCidade(cidadeCapturada);
+  };
   return (
     <View style={styles.container}>
-      <View styles={cidadeView}>
+      <View styles={styles.cidadeView}>
         <TextInput
-          style={cidadeTextInput}
+          style={styles.cidadeTextInput}
           placeholder="Digite o nome da cidade"
-        >
-          <Button title="Search"></Button>
-        </TextInput>
+          value={cidade}
+          onChangeText={capturarCidade}
+        />
+        <Button title="Search" />
       </View>
       <FlatList></FlatList>
     </View>
