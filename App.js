@@ -8,14 +8,21 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { LANGUAGE } from "@env";
+import { APPID, BASE_URL, CNT, LANGUAGE, PROTOCOL, UNITS } from "@env";
 
 export default function App() {
   const [cidade, setCidade] = useState("");
-  const [previsoes, setPrevisoes] = useState({});
+  const [previsoes, setPrevisoes] = useState([]);
 
   const capturarCidade = (cidadeCapturada) => {
     setCidade(cidadeCapturada);
+  };
+
+  const obterPrevisoes = () => {
+    const url = encodeURI(
+      `${PROTOCOL}://${BASE_URL}?units=${UNITS}&cnt=${CNT}&lang=${LANGUAGE}&appid=${APPID}&q=${cidade}`
+    );
+    console.log(url);
   };
   return (
     <View style={styles.container}>
@@ -26,7 +33,7 @@ export default function App() {
           value={cidade}
           onChangeText={capturarCidade}
         />
-        <Button title="Search" />
+        <Button title="Search" onPress={obterPrevisoes} />
       </View>
       <FlatList
         data={previsoes}
